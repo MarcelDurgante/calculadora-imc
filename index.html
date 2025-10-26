@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Calculadora de IMC — Descubra seu Índice de Massa Corporal</title>
+	<meta name="description" content="Calcule seu IMC facilmente e descubra em qual faixa de peso você se encontra.">
+	<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+	<main>
+		<section class="container">
+			<h1>Calcule seu IMC</h1>
+			<form action="" class="form" id="form">
+				<label for="peso">Peso (kg)</label>
+				<input type="text" id="peso" inputmode="decimal" />
+				<label for="altura">Altura (m)</label>
+				<input type="text" id="altura" inputmode="decimal" />
+				<button type="submit">Enviar</button>
+			</form>
+			<div class="resultado" id="resultado" aria-live="polite"></div>
+		</section>
+	</main>
+	<script src="script.js" defer></script>
+</body>
+
+</html>

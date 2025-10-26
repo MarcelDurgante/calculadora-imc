@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,100..900&display=swap');
+
+/* =========================================================
+   DESIGN TOKENS (FOUNDATIONS)
+   ========================================================= */
+:root {
+	/* --- Colors --- */
+	--color-accent: #f59e0b; /* tailwind amber-500 */
+	--color-accent-hover: #d97706;
+	--color-bg-input: #ffffff;
+	--color-bg-input-hover: #cbd5e1;
+	--color-bg-primary: #3b82f6;
+	--color-focus-ring: color-mix(in srgb, var(--color-accent) 70%, white 20%);
+	--color-text-button: #111827;
+	--color-text-primary: #f8fafc;
+	--color-text-secondary: #ffffff;
+	--color-warning: #facc15;
+
+	/* --- Typography --- */
+	--font-family-base: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.2rem;
+	--font-size-md: 1.125rem;
+	--font-size-sm: 0.875rem;
+	--font-size-xl: 1.6rem;
+	--font-size-xxl: 2rem;
+
+	/* --- Weights --- */
+	--weight-bold: 700;
+	--weight-medium: 500;
+	--weight-normal: 400;
+	--weight-thin: 200;
+
+	/* --- Layout & Motion --- */
+	--animation-standard: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+	--line-height-base: 1.6;
+	--radius-base: 6px;
+	--radius-component: 12px;
+	--shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.18);
+	--space-section: 2.4rem;
+	--transition-fade: opacity 0.35s ease, transform 0.35s ease;
+	--transition-uniform: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   GLOBAL RESET / BASE
+   ========================================================= */
+* {
+	box-sizing: border-box;
+	outline: 0;
+}
+
+html {
+	font-size: clamp(15px, 1.1vw + 0.5rem, 18px);
+}
+
+body {
+	animation: fadeInBody var(--animation-standard) forwards;
+	background-color: var(--color-bg-input);
+	color: var(--color-text-primary);
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-base);
+	font-weight: var(--weight-normal);
+	line-height: var(--line-height-base);
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+h1,
+h2,
+h3 {
+	color: var(--color-text-primary);
+	font-weight: var(--weight-bold);
+	line-height: 1.3;
+	margin: 0;
+}
+
+h1 {
+	font-size: var(--font-size-xxl);
+}
+
+h2 {
+	font-size: var(--font-size-xl);
+}
+
+h3 {
+	font-size: var(--font-size-lg);
+}
+
+p {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-lg);
+}
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+form input,
+form label {
+	display: block;
+	width: 100%;
+}
+
+/* --- Labels --- */
+form label {
+	color: color-mix(in srgb, var(--color-text-primary) 80%, black 20%);
+	font-size: var(--font-size-base);
+	font-weight: var(--weight-bold);
+	line-height: 1.3;
+	margin-bottom: 0.4rem;
+	margin-top: 0.8rem;
+	pointer-events: none;
+}
+
+/* --- Inputs --- */
+form label + input {
+	margin-top: 0.25rem;
+}
+
+form input + label {
+	margin-top: 0.75rem;
+}
+
+form input {
+	background: var(--color-bg-input);
+	background-image: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0.6),
+		rgba(255, 255, 255, 0)
+	);
+	border: 2px solid
+		color-mix(in srgb, var(--color-bg-input-hover) 60%, black 10%);
+	border-radius: var(--radius-component);
+	caret-color: var(--color-accent);
+	cursor: text;
+	font-size: var(--font-size-base);
+	font-weight: var(--weight-normal);
+	height: 2.5rem;
+	letter-spacing: 0.3px;
+	margin-bottom: 10px;
+	padding: 0 20px;
+	padding-block: 0.4rem;
+	transition: var(--transition-uniform), opacity 0.2s ease;
+}
+
+input:-webkit-autofill {
+	box-shadow: 0 0 0 1000px var(--color-bg-input) inset !important;
+	-webkit-text-fill-color: #000 !important;
+}
+
+form input:hover,
+form input:focus-within,
+form input:active {
+	background: var(--color-bg-input-hover);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+form input:focus {
+	border-color: var(--color-accent);
+	box-shadow: var(--shadow-soft);
+}
+
+form input:focus-visible,
+form button:focus-visible {
+	outline: 2px solid var(--color-focus-ring);
+	outline-offset: 2px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+form button {
+	background: var(--color-accent);
+	border: none;
+	border-radius: var(--radius-component);
+	color: var(--color-text-button);
+	cursor: pointer;
+	display: block;
+	font-size: var(--font-size-base);
+	font-weight: var(--weight-bold);
+	margin: 25px auto 0;
+	min-height: 2.75rem;
+	padding: 0 20px;
+	padding-block: 0.5rem;
+	transition: var(--transition-uniform), filter 0.25s ease;
+	width: 50%;
+}
+
+form button:focus-visible {
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
+	user-select: none;
+}
+
+form button:hover {
+	background: var(--color-accent-hover);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	filter: brightness(1.05) saturate(1.1);
+	transform: translateY(-1px);
+}
+
+form button:active {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	transform: translateY(1px) scale(0.97);
+	transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+form button:disabled {
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+form button:hover:disabled {
+	background: var(--color-accent);
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.container {
+	animation: fadeInUp var(--animation-standard) forwards;
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-bg-primary) 82%, white 12%),
+		color-mix(in srgb, var(--color-bg-primary) 92%, black 7%)
+	);
+	border-radius: var(--radius-component);
+	box-shadow: var(--shadow-soft);
+	color: var(--color-text-primary);
+	margin: clamp(60px, 15vh, 130px) auto;
+	max-width: 400px;
+	min-width: 330px;
+	overflow: hidden;
+	padding: 30px 20px;
+	width: 100%;
+}
+
+.container:hover {
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+	transform: translateY(-2px);
+}
+
+.container:focus-within {
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 40%, white 30%);
+}
+
+.container h1 {
+	margin-bottom: var(--space-section);
+	text-align: center;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.container h1::after {
+	animation: fadeSlideIn 0.4s ease;
+	background: var(--color-accent);
+	border-radius: 2px;
+	content: '';
+	display: block;
+	height: 3px;
+	margin: 0.5rem auto 0;
+	opacity: 0.85;
+	width: 50px;
+}
+
+/* =========================================================
+   RESULT DISPLAY
+   ========================================================= */
+.resultado {
+	border-top: 1px solid
+		color-mix(in srgb, var(--color-bg-input) 70%, black 20%);
+	min-height: 50px;
+	margin-top: var(--space-section);
+	max-height: 0;
+	overflow: hidden;
+	padding-top: 1.2rem;
+	position: relative;
+	text-align: left;
+	transform-origin: top center;
+	transition: var(--transition-uniform), color 0.3s ease,
+		text-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.resultado p {
+	animation: fadeInResult var(--animation-standard) forwards;
+	font-size: var(--font-size-md);
+	font-weight: var(--weight-bold);
+	left: 0;
+	letter-spacing: 0.3px;
+	margin: 0;
+	opacity: 1;
+	position: absolute;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	top: 0;
+	transition: color 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease;
+	width: 100%;
+}
+
+.resultado p.not-valid {
+	animation: pulseWarning 4s ease-in-out infinite;
+	color: var(--color-warning);
+	font-size: var(--font-size-base);
+	font-weight: var(--weight-medium);
+	letter-spacing: 0.2px;
+	line-height: 1.4;
+	margin-top: 0.25rem;
+	opacity: 1;
+	padding-inline: 0.25rem;
+	text-align: center;
+	word-break: keep-all;
+}
+
+.resultado.exiting p {
+	animation: fadeOutResult var(--animation-standard) forwards;
+	transition-delay: 0.05s;
+}
+
+.resultado:empty {
+	opacity: 0;
+}
+
+.resultado:not(:empty) {
+	max-height: 120px;
+	opacity: 1;
+	padding-top: 1.2rem;
+	transform: translateY(0);
+}
+
+/* =========================================================
+   MEDIA QUERIES
+   ========================================================= */
+@media (max-width: 400px) {
+	.container {
+		border-radius: 12px;
+		margin: 20px;
+		padding: 18px;
+	}
+
+	form button {
+		min-height: 3rem;
+		width: 100%;
+	}
+
+	h1 {
+		font-size: 1.6rem;
+	}
+
+	.resultado p.not-valid {
+		text-align: left;
+	}
+}
+
+@media (min-width: 500px) {
+	form input {
+		display: block;
+		margin-inline: auto;
+		max-width: 320px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeInBody {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInResult {
+	from {
+		opacity: 0;
+		transform: translateY(3px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeOutResult {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-3px);
+	}
+}
+
+@keyframes fadeSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulseWarning {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.96;
+	}
+}
