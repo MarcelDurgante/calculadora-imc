@@ -80,6 +80,7 @@ const validateInputs = (peso, altura) => {
 const handleSubmit = (e) => {
 	e.preventDefault();
 	const formElement = e.currentTarget;
+	const inputs = form.querySelectorAll('input');
 
 	const { peso, altura } = getInputs(formElement);
 	const { valid, msg } = validateInputs(peso, altura);
@@ -89,9 +90,20 @@ const handleSubmit = (e) => {
 	const imcLevel = getImcCategory(Number(imcValue));
 	const resultMsg = `Seu IMC é: ${imcValue} (${imcLevel})`;
 
-	formElement.reset();
 	showResultado(resultMsg, true);
+
+	const clearOnNextFocus = (e) => {
+		e.target.value = '';
+	};
+	// a partir de agora, na PRÓXIMA vez que focar em cada input, limpa uma vez só
+	inputs.forEach((input) => {
+		input.addEventListener('focus', clearOnNextFocus, { once: true });
+	});
 };
+
+// =========================================================
+// CLEAR INPUT ON FIRST FOCUS
+// =========================================================
 
 // =========================================================
 // EVENT BINDING
